@@ -18,8 +18,8 @@
 }
 
 .page-content {
-	background-color: #ffffff;
 	position: relative;
+	background-color: #ffffff;
 }
 
 .page-content:before,
