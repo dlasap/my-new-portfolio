@@ -62,7 +62,7 @@ const Homepage = () => {
 		top: stayLogo ? "3vh" : "auto",
 		zIndex: 999,
 		border: "3px solid var(--primary-color)",
-		borderRadius: stayLogo ? "50%" : "none",
+		borderRadius: stayLogo ? "50%" : "100%",
 		boxShadow: stayLogo ? "0px 4px 10px rgba(0, 0, 0, 0.25)" : "none",
 	};
 
