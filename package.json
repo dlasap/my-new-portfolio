@@ -1,5 +1,4 @@
 {
-	"homepage": "http://dlasap.github.io/my-new-portfolio",
 	"name": "dlasap-portfolio",
 	"version": "1.0.0",
 	"description": "Personal portfolio for Dom",
@@ -59,8 +58,5 @@
 	"prettier": {
 		"useTabs": true,
 		"tabWidth": 4
-	},
-	"devDependencies": {
-		"gh-pages": "^6.2.0"
 	}
 }
