@@ -12,7 +12,6 @@ import Notfound from "./pages/404";
 
 import { TRACKING_ID } from "./data/tracking";
 import "./app.css";
-import { Analytics } from "@vercel/analytics/react";
 
 function App() {
 	useEffect(() => {
@@ -23,7 +22,6 @@ function App() {
 
 	return (
 		<div className="App">
-			<Analytics />
 			<Routes>
 				<Route path="/" element={<Homepage />} />
 				<Route path="/about" element={<About />} />
