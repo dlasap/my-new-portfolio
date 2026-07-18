@@ -1,0 +1,41 @@
+.section {
+	padding: var(--space-2xl) 0 var(--space-xl);
+}
+
+.header {
+	display: flex;
+	flex-wrap: wrap;
+	align-items: flex-end;
+	justify-content: space-between;
+	gap: 1rem;
+	margin-bottom: var(--space-xl);
+}
+
+.eyebrow {
+	font-size: 0.8rem;
+	letter-spacing: 0.12em;
+	text-transform: uppercase;
+	color: var(--color-accent);
+	margin-bottom: 0.5rem;
+	font-weight: 600;
+}
+
+.title {
+	font-size: clamp(1.85rem, 4vw, 2.5rem);
+	max-width: 18ch;
+}
+
+.more {
+	color: var(--color-ink-muted);
+	font-weight: 600;
+	transition: color 0.2s var(--ease-out);
+}
+
+.more:hover {
+	color: var(--color-accent);
+}
+
+.list {
+	display: grid;
+	gap: var(--space-xl);
+}

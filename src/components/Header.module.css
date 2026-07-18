@@ -1,0 +1,149 @@
+.header {
+	position: sticky;
+	top: 0;
+	z-index: 50;
+	height: var(--header-height);
+	backdrop-filter: blur(12px);
+	background: rgba(246, 244, 241, 0.82);
+	border-bottom: 1px solid transparent;
+	transition: border-color 0.3s var(--ease-out);
+}
+
+.headerScrolled {
+	border-bottom-color: var(--color-border);
+}
+
+.inner {
+	height: 100%;
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	gap: var(--space-md);
+}
+
+.brand {
+	font-family: var(--font-display);
+	font-weight: 700;
+	font-size: 1.15rem;
+	letter-spacing: -0.03em;
+}
+
+.brand span {
+	color: var(--color-accent);
+}
+
+.nav {
+	display: none;
+	align-items: center;
+	gap: 1.75rem;
+}
+
+.nav a {
+	position: relative;
+	font-size: 0.95rem;
+	color: var(--color-ink-muted);
+	transition: color 0.2s var(--ease-out);
+}
+
+.nav a:hover,
+.nav a[aria-current="page"] {
+	color: var(--color-ink);
+}
+
+.nav a::after {
+	content: "";
+	position: absolute;
+	left: 0;
+	bottom: -0.35rem;
+	width: 100%;
+	height: 2px;
+	background: var(--color-accent);
+	transform: scaleX(0);
+	transform-origin: left;
+	transition: transform 0.25s var(--ease-out);
+}
+
+.nav a:hover::after,
+.nav a[aria-current="page"]::after {
+	transform: scaleX(1);
+}
+
+.menuButton {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	width: 2.5rem;
+	height: 2.5rem;
+	border: 1px solid var(--color-border);
+	border-radius: var(--radius-sm);
+	background: transparent;
+	cursor: pointer;
+	color: var(--color-ink);
+}
+
+.menuButton span,
+.menuButton span::before,
+.menuButton span::after {
+	display: block;
+	width: 1.1rem;
+	height: 2px;
+	background: currentColor;
+	position: relative;
+	transition: transform 0.25s var(--ease-out);
+}
+
+.menuButton span::before,
+.menuButton span::after {
+	content: "";
+	position: absolute;
+	left: 0;
+}
+
+.menuButton span::before {
+	top: -6px;
+}
+
+.menuButton span::after {
+	top: 6px;
+}
+
+.mobileNav {
+	display: none;
+	flex-direction: column;
+	gap: 0.25rem;
+	padding: 0.5rem 1.25rem 1.25rem;
+	border-bottom: 1px solid var(--color-border);
+	background: rgba(246, 244, 241, 0.96);
+	animation: fade-in 0.25s var(--ease-out);
+}
+
+.mobileNavOpen {
+	display: flex;
+}
+
+.mobileNav a {
+	padding: 0.75rem 0.5rem;
+	color: var(--color-ink-muted);
+	border-radius: var(--radius-sm);
+}
+
+.mobileNav a[aria-current="page"],
+.mobileNav a:hover {
+	color: var(--color-ink);
+	background: rgba(26, 28, 30, 0.04);
+}
+
+@media (min-width: 768px) {
+	.nav {
+		display: flex;
+	}
+
+	.menuButton {
+		display: none;
+	}
+
+	.mobileNav,
+	.mobileNavOpen {
+		display: none;
+	}
+}
