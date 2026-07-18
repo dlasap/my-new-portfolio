@@ -1,0 +1,56 @@
+.wrap {
+	position: relative;
+	display: inline-block;
+	max-width: 100%;
+}
+
+.ghost {
+	visibility: hidden;
+}
+
+.typed {
+	position: absolute;
+	inset: 0;
+	white-space: pre-wrap;
+}
+
+/* Single-word mode: keep word and caret on one line */
+.nowrap .ghost::after {
+	/* reserve room for the caret so it never overflows */
+	content: "\00a0";
+}
+
+.nowrap .typed {
+	white-space: nowrap;
+}
+
+.caret {
+	display: inline-block;
+	width: 0.08em;
+	min-width: 2px;
+	height: 0.95em;
+	margin-left: 0.06em;
+	background: var(--color-accent);
+	vertical-align: text-top;
+	border-radius: 1px;
+}
+
+.caretBlink {
+	animation: caret-blink 1s steps(1) infinite;
+}
+
+@keyframes caret-blink {
+	0%,
+	100% {
+		opacity: 1;
+	}
+	50% {
+		opacity: 0;
+	}
+}
+
+@media (prefers-reduced-motion: reduce) {
+	.caretBlink {
+		animation: none;
+	}
+}

@@ -29,9 +29,14 @@ export const projects: Project[] = [
 		],
 		screenshots: [
 			"/projects/ai-shorts-ss.webp",
+			"/projects/ai-shorts-ss-2.webp",
 			"/projects/ai-shorts-ss-3.webp",
-			"/projects/ai-shorts-ss-5.webp",
 			"/projects/ai-shorts-ss-4.webp",
+			"/projects/ai-shorts-ss-5.webp",
+			"/projects/ai-shorts-ss-6.webp",
+			"/projects/ai-shorts-ss-7.webp",
+			"/projects/ai-shorts-ss-8.webp",
+			"/projects/ai-shorts-ss-9.webp",
 		],
 	},
 	{
@@ -77,6 +82,10 @@ export const projects: Project[] = [
 			"/projects/rcm-ss-2.webp",
 			"/projects/rcm-ss-3.webp",
 			"/projects/rcm-ss-4.webp",
+			"/projects/rcm-ss-5.webp",
+			"/projects/rcm-ss-6.webp",
+			"/projects/rcm-ss-7.webp",
+			"/projects/rcm-ss-8.webp",
 		],
 	},
 	{

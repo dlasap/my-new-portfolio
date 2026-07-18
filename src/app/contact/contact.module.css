@@ -55,6 +55,7 @@
 
 .card:hover .value {
 	color: var(--color-accent);
+	transition-delay: 0.1s;
 }
 
 .label {

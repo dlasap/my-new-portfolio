@@ -1,5 +1,9 @@
+"use client";
+
 import Image from "next/image";
+import { useState } from "react";
 import type { Project } from "@/data/projects";
+import { ProjectGallery } from "./ProjectGallery";
 import styles from "./ProjectCard.module.css";
 
 type Props = {
@@ -8,30 +12,53 @@ type Props = {
 };
 
 export function ProjectCard({ project, featured = false }: Props) {
-	const image = project.screenshots[0];
+	const [galleryOpen, setGalleryOpen] = useState(false);
+	const images = project.screenshots;
+	const lead = images[0];
+	const hasGallery = images.length > 1;
 
 	return (
 		<article
 			className={`${styles.card} ${featured ? styles.featured : ""}`}
 		>
-			<div className={styles.media}>
-				{image ? (
-					<Image
-						src={image}
-						alt={`Screenshot of ${project.title}`}
-						fill
-						sizes={
-							featured
-								? "(max-width: 768px) 100vw, 55vw"
-								: "(max-width: 768px) 100vw, 33vw"
-						}
-					/>
-				) : (
+			{lead ? (
+				<button
+					type="button"
+					className={styles.mediaButton}
+					onClick={() => setGalleryOpen(true)}
+					aria-label={
+						hasGallery
+							? `View ${images.length} screenshots of ${project.title}`
+							: `View screenshot of ${project.title}`
+					}
+				>
+					<span className={styles.media}>
+						<Image
+							src={lead}
+							alt={`Screenshot of ${project.title}`}
+							fill
+							sizes={
+								featured
+									? "(max-width: 768px) 100vw, 55vw"
+									: "(max-width: 768px) 100vw, 33vw"
+							}
+							style={{ objectFit: "cover" }}
+						/>
+						{hasGallery && (
+							<span className={styles.badge}>
+								{images.length} photos · View gallery
+							</span>
+						)}
+					</span>
+				</button>
+			) : (
+				<div className={styles.media}>
 					<div className={styles.placeholder} aria-hidden="true">
 						{project.title.split("—")[0].trim()}
 					</div>
-				)}
-			</div>
+				</div>
+			)}
+
 			<div className={styles.body}>
 				<h3 className={styles.title}>{project.title}</h3>
 				<p className={styles.description}>{project.description}</p>
@@ -49,6 +76,15 @@ export function ProjectCard({ project, featured = false }: Props) {
 					{project.linkText} →
 				</a>
 			</div>
+
+			{lead && (
+				<ProjectGallery
+					title={project.title}
+					images={images}
+					open={galleryOpen}
+					onClose={() => setGalleryOpen(false)}
+				/>
+			)}
 		</article>
 	);
 }

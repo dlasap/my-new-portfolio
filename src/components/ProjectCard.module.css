@@ -1,4 +1,5 @@
 .card {
+	position: relative;
 	display: grid;
 	gap: 1.25rem;
 	padding: 1.25rem;
@@ -7,36 +8,126 @@
 	border-radius: var(--radius-md);
 	border-bottom: 1px solid var(--color-border);
 	transition:
-		background 0.35s var(--ease-out),
-		box-shadow 0.35s var(--ease-out),
-		transform 0.35s var(--ease-out),
-		border-color 0.35s var(--ease-out);
+		background 0.5s cubic-bezier(0.16, 1, 0.3, 1),
+		box-shadow 0.5s cubic-bezier(0.16, 1, 0.3, 1),
+		transform 0.5s cubic-bezier(0.16, 1, 0.3, 1),
+		border-color 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* Soft accent glow that fades in around the card */
+.card::before {
+	content: "";
+	position: absolute;
+	inset: -1px;
+	z-index: -1;
+	border-radius: inherit;
+	background: linear-gradient(
+		135deg,
+		rgba(224, 112, 74, 0.35),
+		rgba(42, 157, 143, 0.25) 60%,
+		transparent
+	);
+	opacity: 0;
+	transition: opacity 0.5s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .card:hover {
 	background: var(--color-bg-elevated);
 	border-color: transparent;
-	transform: translateY(-4px);
+	transform: translateY(-6px) scale(1.008);
 	box-shadow:
-		0 18px 40px rgba(38, 40, 46, 0.1),
-		0 2px 8px rgba(38, 40, 46, 0.06);
+		0 24px 48px rgba(38, 40, 46, 0.12),
+		0 4px 12px rgba(38, 40, 46, 0.06);
+}
+
+.card:hover::before {
+	opacity: 1;
+}
+
+.mediaButton {
+	display: block;
+	width: 100%;
+	padding: 0;
+	border: none;
+	background: transparent;
+	cursor: pointer;
+	text-align: left;
+	border-radius: var(--radius-md);
+	line-height: 0;
+}
+
+.mediaButton:focus-visible {
+	outline: 2px solid var(--color-accent);
+	outline-offset: 3px;
 }
 
 .media {
 	position: relative;
+	display: block;
+	width: 100%;
 	aspect-ratio: 16 / 10;
 	overflow: hidden;
 	background: var(--color-slate);
 	border-radius: var(--radius-md);
 }
 
-.media img {
-	object-fit: cover;
-	transition: transform 0.7s var(--ease-out);
+/* Light sheen that sweeps across the screenshot on hover */
+.media::after {
+	content: "";
+	position: absolute;
+	inset: 0;
+	z-index: 1;
+	background: linear-gradient(
+		115deg,
+		transparent 30%,
+		rgba(255, 255, 255, 0.18) 50%,
+		transparent 70%
+	);
+	transform: translateX(-120%) skewX(-8deg);
+	transition: transform 0.9s cubic-bezier(0.16, 1, 0.3, 1) 0.05s;
+	pointer-events: none;
 }
 
-.card:hover .media img {
-	transform: scale(1.05);
+.card:hover .media::after {
+	transform: translateX(120%) skewX(-8deg);
+}
+
+.media img {
+	object-fit: cover;
+	transform: scale(1.001);
+	transition: transform 1.4s cubic-bezier(0.16, 1, 0.3, 1);
+	transition-delay: 0s;
+	will-change: transform;
+}
+
+.card:hover .media img,
+.mediaButton:hover .media img {
+	transform: scale(1.07);
+	transition-delay: 0.05s;
+}
+
+.badge {
+	position: absolute;
+	left: 0.75rem;
+	bottom: 0.75rem;
+	z-index: 2;
+	padding: 0.4rem 0.7rem;
+	border-radius: 999px;
+	background: rgba(30, 36, 44, 0.82);
+	color: #f7f5f2;
+	font-size: 0.78rem;
+	font-weight: 600;
+	letter-spacing: 0.01em;
+	backdrop-filter: blur(6px);
+	transition:
+		background 0.25s var(--ease-out),
+		transform 0.25s var(--ease-out);
+}
+
+.mediaButton:hover .badge {
+	background: rgba(224, 112, 74, 0.92);
+	transform: translateY(-2px);
+	transition-delay: 0.12s;
 }
 
 .placeholder {
@@ -92,6 +183,29 @@
 	color: var(--color-teal);
 }
 
+/* Stagger tag highlights so they ripple in after the card lifts */
+.card:hover .tech li:nth-child(1) {
+	transition-delay: 0.1s;
+}
+.card:hover .tech li:nth-child(2) {
+	transition-delay: 0.15s;
+}
+.card:hover .tech li:nth-child(3) {
+	transition-delay: 0.2s;
+}
+.card:hover .tech li:nth-child(4) {
+	transition-delay: 0.25s;
+}
+.card:hover .tech li:nth-child(5) {
+	transition-delay: 0.3s;
+}
+.card:hover .tech li:nth-child(6) {
+	transition-delay: 0.35s;
+}
+.card:hover .tech li:nth-child(n + 7) {
+	transition-delay: 0.4s;
+}
+
 .link {
 	justify-self: start;
 	color: var(--color-accent);
@@ -114,6 +228,7 @@
 		gap: 2rem;
 	}
 
+	.featured:nth-child(even) .mediaButton,
 	.featured:nth-child(even) .media {
 		order: 2;
 	}

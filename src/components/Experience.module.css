@@ -57,6 +57,7 @@
 
 .item:hover .logo {
 	transform: scale(1.08) rotate(-2deg);
+	transition-delay: 0.1s;
 }
 
 .logo img {
