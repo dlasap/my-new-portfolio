@@ -36,6 +36,7 @@ export const theresePersona: Persona = {
 			hero: placeholderPhoto,
 			about: placeholderPhoto,
 			og: placeholderPhoto,
+			favicon: "/personas/therese/favicon.svg",
 		},
 		socials: {
 			linkedin: "https://www.linkedin.com/in/thereseangela12",

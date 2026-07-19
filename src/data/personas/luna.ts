@@ -36,6 +36,7 @@ export const lunaPersona: Persona = {
 			hero: "/personas/luna/portrait.png",
 			about: "/personas/luna/portrait.png",
 			og: "/personas/luna/portrait.png",
+			favicon: "/personas/luna/favicon.svg",
 		},
 		socials: {
 			linkedin: "https://www.linkedin.com/in/lunarkaye",

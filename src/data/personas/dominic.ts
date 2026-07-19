@@ -36,6 +36,7 @@ export const dominicPersona: Persona = {
 			hero: "/hero.jpg",
 			about: "/about-photo.jpg",
 			og: "/og-image.jpg",
+			favicon: "/favicon.ico",
 		},
 		socials: {
 			github: "https://github.com/dlasap",

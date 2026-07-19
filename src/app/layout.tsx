@@ -62,7 +62,7 @@ export const metadata: Metadata = {
 		? { verification: { google: siteConfig.googleVerification } }
 		: {}),
 	icons: {
-		icon: "/favicon.ico",
+		icon: siteConfig.images.favicon,
 	},
 };
 

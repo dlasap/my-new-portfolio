@@ -50,6 +50,7 @@ export type SiteConfig = {
 		hero: string;
 		about: string;
 		og: string;
+		favicon: string;
 	};
 	socials: {
 		github?: string;
