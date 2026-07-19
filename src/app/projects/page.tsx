@@ -1,16 +1,15 @@
 import type { Metadata } from "next";
 import { ProjectCard } from "@/components/ProjectCard";
-import { projects } from "@/data/projects";
-import { siteConfig } from "@/data/site";
+import { projects, siteConfig } from "@/data";
 import styles from "./projects.module.css";
 
 export const metadata: Metadata = {
-	title: "Projects",
-	description: `Selected client and product work by ${siteConfig.name} — React, Next.js, full-stack web apps.`,
+	title: siteConfig.copy.projectsPageTitle,
+	description: siteConfig.copy.projectsLead,
 	alternates: { canonical: "/projects" },
 	openGraph: {
-		title: `Projects · ${siteConfig.name}`,
-		description: `Selected client and product work by ${siteConfig.name}.`,
+		title: `${siteConfig.copy.projectsPageTitle} · ${siteConfig.name}`,
+		description: siteConfig.copy.projectsLead,
 		url: `${siteConfig.url}/projects`,
 	},
 };
@@ -20,12 +19,9 @@ export default function ProjectsPage() {
 		<div className={styles.page}>
 			<div className="container">
 				<header className={styles.header}>
-					<p className={styles.eyebrow}>Projects</p>
-					<h1 className={styles.title}>Work I&apos;ve shipped</h1>
-					<p className={styles.lead}>
-						A mix of full-stack product work, frontend delivery, and AI-assisted
-						tools for real-estate, lending, and operations teams.
-					</p>
+					<p className={styles.eyebrow}>{siteConfig.copy.projectsEyebrow}</p>
+					<h1 className={styles.title}>{siteConfig.copy.projectsTitle}</h1>
+					<p className={styles.lead}>{siteConfig.copy.projectsLead}</p>
 				</header>
 				<div className={styles.list}>
 					{projects.map((project) => (

@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import Image from "next/image";
-import { education } from "@/data/experience";
-import { siteConfig } from "@/data/site";
+import { education, siteConfig } from "@/data";
 import styles from "./about.module.css";
 
 export const metadata: Metadata = {
@@ -23,11 +22,9 @@ export default function AboutPage() {
 					<p className={styles.eyebrow}>About</p>
 					<h1 className={styles.title}>{siteConfig.about.headline}</h1>
 					<p className={styles.body}>{siteConfig.about.body}</p>
-					<p className={styles.body}>
-						I focus on feature delivery, system enhancements, and turning user
-						stories into production-ready interfaces — with attention to
-						performance, clarity, and collaboration.
-					</p>
+					{siteConfig.about.bodyExtra && (
+						<p className={styles.body}>{siteConfig.about.bodyExtra}</p>
+					)}
 
 					<h2 className={styles.skillsTitle}>Skills & tools</h2>
 					<ul className={styles.skills}>
@@ -42,13 +39,14 @@ export default function AboutPage() {
 						</h2>
 						<ul className={styles.eduList}>
 							{education.map((item) => (
-								<li key={item.school} className={styles.eduItem}>
+								<li key={`${item.school}-${item.detail}`} className={styles.eduItem}>
 									<div className={styles.eduLogo}>
 										<Image
 											src={item.logo}
 											alt=""
 											fill
 											sizes="44px"
+											unoptimized={item.logo.endsWith(".svg")}
 										/>
 									</div>
 									<div>
@@ -65,11 +63,12 @@ export default function AboutPage() {
 
 				<div className={styles.media}>
 					<Image
-						src="/about-photo.jpg"
+						src={siteConfig.images.about}
 						alt={`${siteConfig.name} portrait`}
 						fill
 						sizes="(max-width: 860px) 100vw, 40vw"
 						priority
+						unoptimized={siteConfig.images.about.endsWith(".svg")}
 					/>
 				</div>
 			</div>

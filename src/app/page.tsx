@@ -4,7 +4,7 @@ import { ContactCTA } from "@/components/ContactCTA";
 import { Experience } from "@/components/Experience";
 import { FeaturedProjects } from "@/components/FeaturedProjects";
 import { Hero } from "@/components/Hero";
-import { siteConfig } from "@/data/site";
+import { personaId, siteConfig } from "@/data";
 
 export const metadata: Metadata = {
 	title: siteConfig.title,
@@ -13,11 +13,22 @@ export const metadata: Metadata = {
 };
 
 export default function HomePage() {
+	const isLuna = personaId === "luna";
+
 	return (
 		<>
 			<Hero />
-			<FeaturedProjects />
-			<Experience />
+			{isLuna ? (
+				<>
+					<Experience />
+					<FeaturedProjects />
+				</>
+			) : (
+				<>
+					<FeaturedProjects />
+					<Experience />
+				</>
+			)}
 			<AboutTeaser />
 			<ContactCTA />
 		</>

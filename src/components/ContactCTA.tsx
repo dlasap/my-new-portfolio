@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { siteConfig } from "@/data/site";
+import { siteConfig } from "@/data";
 import styles from "./ContactCTA.module.css";
 
 export function ContactCTA() {
@@ -9,12 +9,9 @@ export function ContactCTA() {
 				<div className={styles.panel}>
 					<div>
 						<h2 id="contact-cta-title" className={styles.title}>
-							Let&apos;s build something worth shipping
+							{siteConfig.copy.contactCtaTitle}
 						</h2>
-						<p className={styles.copy}>
-							Open to full-time roles and strong contract work. Reach out and I&apos;ll
-							get back to you.
-						</p>
+						<p className={styles.copy}>{siteConfig.copy.contactCtaCopy}</p>
 					</div>
 					<div className={styles.actions}>
 						<a

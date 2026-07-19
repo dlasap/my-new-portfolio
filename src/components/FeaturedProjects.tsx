@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { featuredProjects } from "@/data/projects";
+import { featuredProjects, siteConfig } from "@/data";
 import { ProjectCard } from "./ProjectCard";
 import styles from "./FeaturedProjects.module.css";
 
@@ -13,13 +13,15 @@ export function FeaturedProjects() {
 			<div className="container">
 				<div className={styles.header}>
 					<div>
-						<p className={styles.eyebrow}>Selected work</p>
+						<p className={styles.eyebrow}>
+							{siteConfig.copy.featuredEyebrow}
+						</p>
 						<h2 id="selected-work-title" className={styles.title}>
-							Projects that show how I ship
+							{siteConfig.copy.featuredTitle}
 						</h2>
 					</div>
 					<Link href="/projects" className={styles.more}>
-						View all projects →
+						{siteConfig.copy.featuredMore}
 					</Link>
 				</div>
 				<div className={styles.list}>

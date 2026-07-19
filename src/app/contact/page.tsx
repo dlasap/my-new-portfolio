@@ -1,10 +1,10 @@
 import type { Metadata } from "next";
-import { siteConfig } from "@/data/site";
+import { siteConfig } from "@/data";
 import styles from "./contact.module.css";
 
 export const metadata: Metadata = {
 	title: "Contact",
-	description: `Contact ${siteConfig.name} for full-stack engineering roles and collaborations.`,
+	description: siteConfig.copy.contactDescription,
 	alternates: { canonical: "/contact" },
 	openGraph: {
 		title: `Contact · ${siteConfig.name}`,
@@ -13,17 +13,24 @@ export const metadata: Metadata = {
 	},
 };
 
+function displayHost(url: string) {
+	try {
+		return new URL(url).host.replace(/^www\./, "");
+	} catch {
+		return url;
+	}
+}
+
 export default function ContactPage() {
+	const { linkedin, github } = siteConfig.socials;
+
 	return (
 		<div className={styles.page}>
 			<div className="container">
 				<header className={styles.header}>
 					<p className={styles.eyebrow}>Contact</p>
 					<h1 className={styles.title}>Let&apos;s talk</h1>
-					<p className={styles.lead}>
-						Interested in hiring or collaborating? Send an email or reach out on
-						LinkedIn — I&apos;m always open to strong opportunities.
-					</p>
+					<p className={styles.lead}>{siteConfig.copy.contactLead}</p>
 				</header>
 
 				<div className={styles.grid}>
@@ -31,24 +38,28 @@ export default function ContactPage() {
 						<span className={styles.label}>Email</span>
 						<span className={styles.value}>{siteConfig.email}</span>
 					</a>
-					<a
-						href={siteConfig.socials.linkedin}
-						className={styles.card}
-						target="_blank"
-						rel="noopener noreferrer"
-					>
-						<span className={styles.label}>LinkedIn</span>
-						<span className={styles.value}>Connect on LinkedIn</span>
-					</a>
-					<a
-						href={siteConfig.socials.github}
-						className={styles.card}
-						target="_blank"
-						rel="noopener noreferrer"
-					>
-						<span className={styles.label}>GitHub</span>
-						<span className={styles.value}>github.com/dlasap</span>
-					</a>
+					{linkedin && (
+						<a
+							href={linkedin}
+							className={styles.card}
+							target="_blank"
+							rel="noopener noreferrer"
+						>
+							<span className={styles.label}>LinkedIn</span>
+							<span className={styles.value}>Connect on LinkedIn</span>
+						</a>
+					)}
+					{github && (
+						<a
+							href={github}
+							className={styles.card}
+							target="_blank"
+							rel="noopener noreferrer"
+						>
+							<span className={styles.label}>GitHub</span>
+							<span className={styles.value}>{displayHost(github)}</span>
+						</a>
+					)}
 				</div>
 
 				<p className={styles.resume}>

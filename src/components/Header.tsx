@@ -3,20 +3,20 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
-import { siteConfig } from "@/data/site";
+import { siteConfig } from "@/data";
 import styles from "./Header.module.css";
-
-const links = [
-	{ href: "/", label: "Home" },
-	{ href: "/projects", label: "Projects" },
-	{ href: "/about", label: "About" },
-	{ href: "/contact", label: "Contact" },
-];
 
 export function Header() {
 	const pathname = usePathname();
 	const [open, setOpen] = useState(false);
 	const [scrolled, setScrolled] = useState(false);
+
+	const links = [
+		{ href: "/", label: "Home" },
+		{ href: "/projects", label: siteConfig.nav.projectsLabel },
+		{ href: "/about", label: "About" },
+		{ href: "/contact", label: "Contact" },
+	];
 
 	useEffect(() => {
 		const onScroll = () => setScrolled(window.scrollY > 12);
@@ -35,7 +35,7 @@ export function Header() {
 		>
 			<div className={`container ${styles.inner}`}>
 				<Link href="/" className={styles.brand} aria-label="Home">
-					{siteConfig.name.split(" ")[0]}
+					{siteConfig.shortName}
 					<span>.</span>
 				</Link>
 

@@ -4,7 +4,7 @@ import { DM_Sans, Syne } from "next/font/google";
 import { Footer } from "@/components/Footer";
 import { Header } from "@/components/Header";
 import { JsonLd } from "@/components/JsonLd";
-import { siteConfig } from "@/data/site";
+import { siteConfig } from "@/data";
 import "./globals.css";
 
 const syne = Syne({
@@ -41,7 +41,7 @@ export const metadata: Metadata = {
 		description: siteConfig.description,
 		images: [
 			{
-				url: siteConfig.ogImage,
+				url: siteConfig.images.og,
 				width: 1200,
 				height: 630,
 				alt: `${siteConfig.name} — portfolio`,
@@ -52,15 +52,15 @@ export const metadata: Metadata = {
 		card: "summary_large_image",
 		title: siteConfig.title,
 		description: siteConfig.description,
-		images: [siteConfig.ogImage],
+		images: [siteConfig.images.og],
 	},
 	robots: {
 		index: true,
 		follow: true,
 	},
-	verification: {
-		google: siteConfig.googleVerification,
-	},
+	...(siteConfig.googleVerification
+		? { verification: { google: siteConfig.googleVerification } }
+		: {}),
 	icons: {
 		icon: "/favicon.ico",
 	},
@@ -72,7 +72,11 @@ export default function RootLayout({
 	children: React.ReactNode;
 }>) {
 	return (
-		<html lang="en" className={`${syne.variable} ${dmSans.variable}`}>
+		<html
+			lang="en"
+			data-theme={siteConfig.theme}
+			className={`${syne.variable} ${dmSans.variable}`}
+		>
 			<body>
 				<JsonLd />
 				<Header />

@@ -1,6 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
-import { siteConfig } from "@/data/site";
+import { siteConfig } from "@/data";
 import styles from "./AboutTeaser.module.css";
 
 export function AboutTeaser() {
@@ -19,10 +19,11 @@ export function AboutTeaser() {
 				</div>
 				<div className={styles.media}>
 					<Image
-						src="/about-photo.jpg"
+						src={siteConfig.images.about}
 						alt={`${siteConfig.name} portrait`}
 						fill
 						sizes="(max-width: 800px) 100vw, 40vw"
+						unoptimized={siteConfig.images.about.endsWith(".svg")}
 					/>
 				</div>
 			</div>

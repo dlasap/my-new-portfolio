@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import { useState } from "react";
-import type { Project } from "@/data/projects";
+import type { Project } from "@/data";
 import { ProjectGallery } from "./ProjectGallery";
 import styles from "./ProjectCard.module.css";
 
@@ -16,6 +16,7 @@ export function ProjectCard({ project, featured = false }: Props) {
 	const images = project.screenshots;
 	const lead = images[0];
 	const hasGallery = images.length > 1;
+	const hasLink = Boolean(project.link && project.linkText);
 
 	return (
 		<article
@@ -62,19 +63,21 @@ export function ProjectCard({ project, featured = false }: Props) {
 			<div className={styles.body}>
 				<h3 className={styles.title}>{project.title}</h3>
 				<p className={styles.description}>{project.description}</p>
-				<ul className={styles.tech} aria-label="Technologies">
+				<ul className={styles.tech} aria-label="Skills and tools">
 					{project.technologies.map((tech) => (
 						<li key={tech}>{tech}</li>
 					))}
 				</ul>
-				<a
-					href={project.link}
-					className={styles.link}
-					target="_blank"
-					rel="noopener noreferrer"
-				>
-					{project.linkText} →
-				</a>
+				{hasLink && (
+					<a
+						href={project.link}
+						className={styles.link}
+						target="_blank"
+						rel="noopener noreferrer"
+					>
+						{project.linkText} →
+					</a>
+				)}
 			</div>
 
 			{lead && (

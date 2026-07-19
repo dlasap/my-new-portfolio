@@ -1,6 +1,12 @@
-import { siteConfig } from "@/data/site";
+import { siteConfig } from "@/data";
 
 export function JsonLd() {
+	const sameAs = [
+		siteConfig.socials.github,
+		siteConfig.socials.linkedin,
+		siteConfig.socials.facebook,
+	].filter(Boolean);
+
 	const person = {
 		"@context": "https://schema.org",
 		"@type": "Person",
@@ -12,12 +18,8 @@ export function JsonLd() {
 			"@type": "PostalAddress",
 			addressCountry: "PH",
 		},
-		sameAs: [
-			siteConfig.socials.github,
-			siteConfig.socials.linkedin,
-			siteConfig.socials.facebook,
-		],
-		image: `${siteConfig.url}/og-image.jpg`,
+		sameAs,
+		image: `${siteConfig.url}${siteConfig.images.og}`,
 		description: siteConfig.description,
 	};
 

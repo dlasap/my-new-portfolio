@@ -1,6 +1,6 @@
-# Dominic Lasap — Portfolio
+# Portfolio — multi-persona
 
-Full-stack developer portfolio built with **Next.js 15**, TypeScript, and CSS Modules.
+Next.js 15 portfolio that can deploy as **Dominic**, **Luna**, or **Therese** via an environment variable.
 
 ## Develop
 
@@ -11,6 +11,13 @@ npm run dev
 
 Open [http://localhost:3000](http://localhost:3000).
 
+Default persona is **Dominic**. To preview another:
+
+```bash
+PORTFOLIO_PERSONA=luna npm run dev
+PORTFOLIO_PERSONA=therese npm run dev
+```
+
 ## Build
 
 ```bash
@@ -18,14 +25,22 @@ npm run build
 npm start
 ```
 
-## Deploy
+## Personas on Vercel
 
-Hosted on [Vercel](https://vercel.com). Production URL: `https://dlasap-portfolio.vercel.app`
+Use the same repo with separate Vercel projects (or one project per domain). Set:
+
+| Variable | Values | Notes |
+|----------|--------|--------|
+| `PORTFOLIO_PERSONA` | `dominic` \| `luna` \| `therese` | Defaults to `dominic` if unset |
+| `NEXT_PUBLIC_SITE_URL` | e.g. `https://your-app.vercel.app` | Optional; overrides sitemap/OG base URL |
+
+After changing env vars, **redeploy** so the build picks them up.
 
 ## Content
 
-Edit data modules under `src/data/`:
+Persona data lives under `src/data/personas/`:
 
-- `site.ts` — identity, SEO copy, socials
-- `projects.ts` — project list
-- `experience.ts` — work history & education
+- `dominic.ts` / `luna.ts` / `therese.ts` — identity, experience, education, projects/highlights
+- `resolve.ts` — selects the active persona from `PORTFOLIO_PERSONA`
+
+Resumes: `public/DominicLasap-Resume.pdf`, `public/resumes/luna.pdf`, `public/resumes/therese.pdf`.

@@ -1,9 +1,10 @@
 import Link from "next/link";
-import { siteConfig } from "@/data/site";
+import { siteConfig } from "@/data";
 import styles from "./Footer.module.css";
 
 export function Footer() {
 	const year = new Date().getFullYear();
+	const { linkedin, github } = siteConfig.socials;
 
 	return (
 		<footer className={styles.footer}>
@@ -16,20 +17,24 @@ export function Footer() {
 						</p>
 					</div>
 					<nav className={styles.socials} aria-label="Social links">
-						<a
-							href={siteConfig.socials.linkedin}
-							target="_blank"
-							rel="noopener noreferrer"
-						>
-							LinkedIn
-						</a>
-						<a
-							href={siteConfig.socials.github}
-							target="_blank"
-							rel="noopener noreferrer"
-						>
-							GitHub
-						</a>
+						{linkedin && (
+							<a
+								href={linkedin}
+								target="_blank"
+								rel="noopener noreferrer"
+							>
+								LinkedIn
+							</a>
+						)}
+						{github && (
+							<a
+								href={github}
+								target="_blank"
+								rel="noopener noreferrer"
+							>
+								GitHub
+							</a>
+						)}
 						<a href={`mailto:${siteConfig.email}`}>Email</a>
 					</nav>
 				</div>
