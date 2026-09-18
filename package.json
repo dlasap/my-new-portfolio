@@ -8,6 +8,9 @@
     "email": "lasapdominic@gmail.com",
     "url": "https://www.linkedin.com/in/dominic-gabriel-lasap-07655a199/"
   },
+  "engines": {
+    "node": ">=24.x"
+  },
   "scripts": {
     "dev": "next dev",
     "build": "next build",
