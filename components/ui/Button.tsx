@@ -7,6 +7,7 @@ type Props = {
   children: ReactNode;
   type?: "button" | "submit";
   disabled?: boolean;
+  download?: boolean | string;
 };
 
 const base =
@@ -19,7 +20,7 @@ const variants = {
   ghost: "border border-line text-paper hover:border-white/30",
 } as const;
 
-export function Button({ href, variant = "primary", children, type = "button", disabled }: Props) {
+export function Button({ href, variant = "primary", children, type = "button", disabled, download }: Props) {
   const className = `${base} ${variants[variant]}`;
 
   if (href) {
@@ -27,6 +28,13 @@ export function Button({ href, variant = "primary", children, type = "button", d
     if (external) {
       return (
         <a href={href} className={className} target="_blank" rel="noopener noreferrer">
+          {children}
+        </a>
+      );
+    }
+    if (download) {
+      return (
+        <a href={href} className={className} download={download === true ? "" : download}>
           {children}
         </a>
       );

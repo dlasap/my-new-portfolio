@@ -38,7 +38,15 @@ export default function AboutPage() {
           </p>
           <div className="mt-6 flex flex-wrap gap-3">
             <Button href={`mailto:${profile.email}`}>Get in touch</Button>
-            <Button href={profile.resumePath} variant="ghost">
+            <a
+              href={profile.resumePath}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center justify-center gap-2 rounded-lg border border-line px-5 py-3 text-sm font-semibold transition-transform duration-200 ease-[var(--ease-out-soft)] hover:-translate-y-0.5 hover:border-white/30"
+            >
+              View résumé ↗
+            </a>
+            <Button href={profile.resumePath} download variant="ghost">
               Download résumé (PDF)
             </Button>
           </div>
