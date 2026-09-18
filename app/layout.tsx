@@ -3,6 +3,9 @@ import { Analytics } from "@vercel/analytics/next";
 import { Inter, JetBrains_Mono } from "next/font/google";
 import { personSchema, siteUrl } from "@/lib/seo";
 import { profile } from "@/content/profile";
+import { Footer } from "@/components/shell/Footer";
+import { NavBar } from "@/components/shell/NavBar";
+import { SkipLink } from "@/components/shell/SkipLink";
 import "./globals.css";
 
 const sans = Inter({ subsets: ["latin"], display: "swap", variable: "--font-inter" });
@@ -29,7 +32,10 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(personSchema()) }}
         />
-        {children}
+        <SkipLink />
+        <NavBar />
+        <main id="main">{children}</main>
+        <Footer />
         <Analytics />
       </body>
     </html>

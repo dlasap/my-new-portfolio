@@ -64,3 +64,20 @@
   -webkit-background-clip: text;
   color: transparent;
 }
+
+@keyframes aurora-float {
+  0%,
+  100% {
+    transform: translate(0, 0) scale(1);
+  }
+  50% {
+    transform: translate(28px, -22px) scale(1.12);
+  }
+}
+
+.aurora-orb {
+  position: absolute;
+  border-radius: 9999px;
+  filter: blur(90px);
+  animation: aurora-float ease-in-out infinite;
+}
