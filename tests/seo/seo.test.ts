@@ -24,7 +24,7 @@ describe("buildMetadata", () => {
 
   it("sets openGraph and twitter cards", () => {
     expect(meta.openGraph?.title).toBe("PaddleBag");
-    expect(meta.twitter?.card).toBe("summary_large_image");
+    expect((meta.twitter as { card: string }).card).toBe("summary_large_image");
   });
 });
 
