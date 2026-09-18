@@ -7,7 +7,7 @@ export function Hero() {
   return (
     <section className="relative flex min-h-[92svh] items-center overflow-hidden">
       <AuroraField />
-      <div className="relative mx-auto w-full max-w-6xl px-5 sm:px-8">
+      <div className="relative mx-auto w-full max-w-6xl px-5 sm:px-8 mt-2">
         <Reveal>
           <Pill>{profile.availability}</Pill>
         </Reveal>
@@ -30,11 +30,18 @@ export function Hero() {
           </dl>
         </Reveal>
         <Reveal delay={400}>
-          <a
-            href="#work"
-            className="mt-14 inline-flex items-center gap-2 text-sm text-muted transition-colors hover:text-paper"
-          >
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+          <a href="#work" className="mt-14 inline-flex items-center gap-2 text-sm text-muted transition-colors hover:text-paper">
+            <svg
+              width="16"
+              height="16"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              aria-hidden="true"
+            >
               <path d="M12 5v14M19 12l-7 7-7-7" />
             </svg>
             See the work
