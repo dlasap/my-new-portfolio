@@ -49,7 +49,9 @@ export const projects: Project[] = [
       "Playwright",
       "Vercel",
     ],
-    screenshots: [],
+    screenshots: [
+      { src: "/paddlebag.png", alt: "PaddleBag home screen with pickleball community feed and court directory" },
+    ],
     liveUrl: "https://paddlebag.app",
     liveLabel: "Open PaddleBag",
   },
@@ -102,7 +104,9 @@ export const projects: Project[] = [
       "Vitest",
       "pg-boss",
     ],
-    screenshots: [],
+    screenshots: [
+      { src: "/CRM v2 app.png", alt: "Childcare Marketing CRM dashboard showing campaign and account-manager workload views" },
+    ],
   },
   {
     slug: "ai-shorts",
