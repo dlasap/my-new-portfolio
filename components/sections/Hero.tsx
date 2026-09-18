@@ -7,7 +7,7 @@ export function Hero() {
   return (
     <section className="relative flex min-h-[92svh] items-center overflow-hidden">
       <AuroraField />
-      <div className="relative mx-auto w-full max-w-6xl px-5 sm:px-8 mt-2">
+      <div className="relative mx-auto w-full max-w-6xl px-5 sm:px-8 mt-4">
         <Reveal>
           <Pill>{profile.availability}</Pill>
         </Reveal>
