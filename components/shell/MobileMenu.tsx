@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import { NAV_LINKS } from "./NavBar";
 
 export function MobileMenu() {
@@ -13,6 +13,17 @@ export function MobileMenu() {
   useEffect(() => {
     setOpen(false);
   }, [pathname]);
+
+  /* Lock body scroll while the menu is open so the page can't
+     shift around underneath the overlay on touch devices. */
+  useEffect(() => {
+    if (!open) return;
+    const previous = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+    return () => {
+      document.body.style.overflow = previous;
+    };
+  }, [open]);
 
   useEffect(() => {
     if (!open) return;
@@ -26,6 +37,8 @@ export function MobileMenu() {
     return () => window.removeEventListener("keydown", onKey);
   }, [open]);
 
+  const toggle = useCallback(() => setOpen((v) => !v), []);
+
   return (
     <div className="md:hidden">
       <button
@@ -34,32 +47,44 @@ export function MobileMenu() {
         aria-expanded={open}
         aria-controls="mobile-nav"
         aria-label={open ? "Close menu" : "Open menu"}
-        onClick={() => setOpen((v) => !v)}
+        onClick={toggle}
         className="relative z-50 flex h-11 w-11 items-center justify-center rounded-lg border border-line"
       >
         <span aria-hidden="true">{open ? "✕" : "☰"}</span>
       </button>
 
-      {open && (
-        <div
-          id="mobile-nav"
-          className="fixed inset-0 z-40 flex flex-col items-center justify-center gap-8 bg-ink/95 backdrop-blur-md"
-        >
-          <ul className="flex flex-col items-center gap-8">
-            {NAV_LINKS.map((link) => (
-              <li key={link.href}>
-                <Link
-                  href={link.href}
-                  className="text-2xl font-semibold"
-                  onClick={() => setOpen(false)}
-                >
-                  {link.label}
-                </Link>
-              </li>
-            ))}
-          </ul>
-        </div>
-      )}
+      {/* Always mounted; toggled with opacity/visibility so transitions run
+          and the toggle button never gets remounted mid-tap. Backdrop blur
+          is intentionally avoided here — a nested backdrop-filter inside the
+          blurred fixed header is janky and buggy on mobile browsers. */}
+      <div
+        id="mobile-nav"
+        aria-hidden={!open}
+        className={`fixed inset-0 z-40 flex h-[100dvh] flex-col items-center justify-center gap-8 bg-ink transition-[opacity,visibility] duration-200 ease-[var(--ease-out-soft)] md:hidden ${
+          open ? "visible opacity-100" : "invisible opacity-0"
+        }`}
+      >
+        <ul className="flex flex-col items-center gap-8">
+          {NAV_LINKS.map((link, i) => (
+            <li
+              key={link.href}
+              className={`transition-[opacity,transform] duration-300 ease-[var(--ease-out-soft)] ${
+                open ? "translate-y-0 opacity-100" : "translate-y-2 opacity-0"
+              }`}
+              style={{ transitionDelay: `${open ? 60 + i * 50 : 0}ms` }}
+            >
+              <Link
+                href={link.href}
+                className="text-2xl font-semibold"
+                tabIndex={open ? 0 : -1}
+                onClick={() => setOpen(false)}
+              >
+                {link.label}
+              </Link>
+            </li>
+          ))}
+        </ul>
+      </div>
     </div>
   );
 }

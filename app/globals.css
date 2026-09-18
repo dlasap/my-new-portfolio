@@ -79,5 +79,17 @@
   position: absolute;
   border-radius: 9999px;
   filter: blur(90px);
+  will-change: transform;
+  transform: translateZ(0);
   animation: aurora-float ease-in-out infinite;
+}
+
+/* Animated 90px blur on huge elements is a repaint magnet on mobile GPUs.
+   Downgrade to static (or cheaper) orbs on small screens. */
+@media (max-width: 767px) {
+  .aurora-orb {
+    filter: blur(60px);
+    animation: none;
+    will-change: auto;
+  }
 }
