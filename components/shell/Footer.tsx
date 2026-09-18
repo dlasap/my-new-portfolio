@@ -13,6 +13,9 @@ export function Footer() {
           <a href={`mailto:${profile.email}`} className="hover:text-paper">
             {profile.email}
           </a>
+          <a href={profile.resumePath} download className="hover:text-paper">
+            Résumé (PDF)
+          </a>
           <a href={profile.socials.github} target="_blank" rel="noopener noreferrer" className="hover:text-paper">
             GitHub
           </a>
