@@ -4,8 +4,8 @@ import { profile } from "@/content/profile";
 import { buildMetadata } from "@/lib/seo";
 
 export const metadata: Metadata = buildMetadata({
-  title: "Contact",
-  description: `Email ${profile.shortName} directly or send a message — replies within a day or two.`,
+  title: "Contact — Hire a Full-Stack Developer",
+  description: `Hire ${profile.shortName}, a remote full-stack developer (React, Next.js, Node.js). Email directly or send a message — replies within a day or two.`,
   path: "/contact",
 });
 

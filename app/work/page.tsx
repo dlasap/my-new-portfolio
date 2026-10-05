@@ -4,9 +4,9 @@ import { ProjectCard } from "@/components/sections/ProjectCard";
 import { buildMetadata } from "@/lib/seo";
 
 export const metadata: Metadata = buildMetadata({
-  title: "Work",
+  title: "Projects & Case Studies — Full-Stack Developer Portfolio",
   description:
-    "Every project Dominic Lasap has shipped — the problem, the decisions, and the outcome for each.",
+    "Full-stack projects by Dominic Lasap — React, Next.js, Node.js, and Supabase apps for CRM, real estate, fintech, and AI. The problem, the decisions, and the outcome for each.",
   path: "/work",
 });
 

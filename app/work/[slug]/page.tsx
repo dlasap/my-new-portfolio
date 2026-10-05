@@ -6,7 +6,7 @@ import { getProject, projects } from "@/content/projects";
 import { Badge } from "@/components/ui/Badge";
 import { Button } from "@/components/ui/Button";
 import { Reveal } from "@/components/motion/Reveal";
-import { buildMetadata } from "@/lib/seo";
+import { breadcrumbSchema, buildMetadata, jsonLd } from "@/lib/seo";
 
 type Props = { params: Promise<{ slug: string }> };
 
@@ -19,7 +19,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const project = getProject(slug);
   if (!project) return {};
   return buildMetadata({
-    title: project.title,
+    title: `${project.title} — Case Study`,
     description: project.summary,
     path: `/work/${project.slug}`,
   });
@@ -34,6 +34,16 @@ export default async function CaseStudyPage({ params }: Props) {
 
   return (
     <article className="mx-auto max-w-4xl px-5 pb-24 pt-32 sm:px-8">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={jsonLd(
+          breadcrumbSchema([
+            { name: "Home", path: "/" },
+            { name: "Work", path: "/work" },
+            { name: project.title, path: `/work/${project.slug}` },
+          ]),
+        )}
+      />
       <p className="text-xs uppercase tracking-[0.14em] text-iris">
         {project.org} · {project.role} · {project.period}
       </p>

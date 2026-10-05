@@ -4,17 +4,19 @@ import { education, roles } from "@/content/experience";
 import { profile } from "@/content/profile";
 import { Button } from "@/components/ui/Button";
 import { Reveal } from "@/components/motion/Reveal";
-import { buildMetadata } from "@/lib/seo";
+import { buildMetadata, jsonLd, profilePageSchema } from "@/lib/seo";
 
 export const metadata: Metadata = buildMetadata({
-  title: "About",
-  description: `Who ${profile.shortName} is, how he works, and the road from computer engineering to full-stack product work.`,
+  title: `About ${profile.shortName} — Full-Stack Developer in Cebu, Philippines`,
+  description: `${profile.name} is a full-stack software engineer (React, Next.js, Node.js, TypeScript, Supabase) from Cebu City, Philippines. Career history, education, and résumé.`,
   path: "/about",
+  absoluteTitle: true,
 });
 
 export default function AboutPage() {
   return (
     <div className="mx-auto max-w-4xl px-5 pb-24 pt-32 sm:px-8">
+      <script type="application/ld+json" dangerouslySetInnerHTML={jsonLd(profilePageSchema())} />
       <div className="flex flex-col gap-10 md:flex-row md:items-start">
         <div className="relative h-40 w-40 shrink-0 overflow-hidden rounded-2xl border border-line">
           <Image

@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { Analytics } from "@vercel/analytics/next";
 import { Inter, JetBrains_Mono } from "next/font/google";
-import { personSchema, siteUrl } from "@/lib/seo";
+import { jsonLd, personSchema, siteKeywords, siteName, siteUrl, websiteSchema } from "@/lib/seo";
 import { profile } from "@/content/profile";
 import { Footer } from "@/components/shell/Footer";
 import { NavBar } from "@/components/shell/NavBar";
@@ -14,10 +14,13 @@ const mono = JetBrains_Mono({ subsets: ["latin"], display: "swap", variable: "--
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
   title: {
-    default: `${profile.name} — ${profile.role}`,
-    template: `%s — ${profile.shortName}`,
+    default: `${profile.shortName} — Full-Stack Developer | React, Next.js, Node.js`,
+    template: `%s | ${siteName}`,
   },
   description: profile.subhead,
+  applicationName: siteName,
+  keywords: siteKeywords,
+  openGraph: { siteName, locale: "en_US", type: "website" },
   authors: [{ name: profile.name, url: siteUrl }],
   creator: profile.name,
   robots: { index: true, follow: true },
@@ -30,7 +33,11 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       <body className="font-sans">
         <script
           type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(personSchema()) }}
+          dangerouslySetInnerHTML={jsonLd(personSchema())}
+        />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={jsonLd(websiteSchema())}
         />
         <SkipLink />
         <NavBar />

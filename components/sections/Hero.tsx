@@ -10,6 +10,9 @@ export function Hero() {
       <div className="relative mx-auto w-full max-w-6xl px-5 sm:px-8 mt-4">
         <Reveal>
           <Pill>{profile.availability}</Pill>
+          <p className="mt-4 text-sm text-muted">
+            {profile.shortName} · {profile.role} · {profile.location}
+          </p>
         </Reveal>
         <Reveal delay={100}>
           <h1 className="mt-6 max-w-4xl text-[length:var(--text-display)] font-semibold leading-[1.05] tracking-tight">
