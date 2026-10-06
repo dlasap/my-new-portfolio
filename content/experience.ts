@@ -20,7 +20,7 @@ export const roles: Role[] = [
   {
     org: "Childcare Marketing (UK)",
     title: "Software Engineer",
-    period: "Jun 2025 — Present",
+    period: "Jan 2025 — Oct 2026",
     location: "Remote (United Kingdom)",
     kind: "full-time",
     summary: "Full-stack development on a client-facing CRM and operations platform.",
@@ -35,7 +35,7 @@ export const roles: Role[] = [
   {
     org: "FullScale",
     title: "Software Engineer",
-    period: "Jun 2022 — Jul 2025",
+    period: "Jun 2022 — Dec 2024",
     location: "IT Park, Cebu City, Philippines",
     kind: "full-time",
     summary: "Feature delivery for US-based clients across several long-running projects.",
