@@ -35,7 +35,7 @@ export const roles: Role[] = [
   {
     org: "FullScale",
     title: "Software Engineer",
-    period: "Jun 2022 — Present",
+    period: "Jun 2022 — Jul 2025",
     location: "IT Park, Cebu City, Philippines",
     kind: "full-time",
     summary: "Feature delivery for US-based clients across several long-running projects.",
